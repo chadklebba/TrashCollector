@@ -11,6 +11,7 @@ using TrashCollector.Models.TrashCollection;
 
 namespace TrashCollector.Controllers
 {
+    [Authorize (Roles = "Admin, TrashCollector")]
     public class AddressesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
