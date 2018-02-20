@@ -1,0 +1,9 @@
+﻿Enable-Migrations 
+
+add-migration "InitialCreate"
+
+update-database
+
+Enable-Migrations -MigrationsDirectory Migrations\Identity
+
+add-migration -ConfigurationTypeName TrashCollector.Migrations.Identity.Configuration "InitialIdentityCreate"

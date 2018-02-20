@@ -29,5 +29,8 @@ namespace TrashCollector.Models
         {
             return new ApplicationDbContext();
         }
+
+        public DbSet<TrashCollection.Address> Addresses { get; set; }
+        public DbSet<TrashCollection.Customer> Customers { get; set; }
     }
 }

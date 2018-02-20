@@ -22,3 +22,10 @@ select,
 textarea {
     max-width: 280px;
 }
+.jumbopic{
+    background-color: none;
+    background-image: url(images\never_miss_collect_day.jpg);
+    background-position: 0% 25%;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
