@@ -11,7 +11,7 @@ namespace TrashCollector.Models.TrashCollection
         [Key]
         public int AddressId { get; set; }
         public string Street { get; set; }
-        public string City { get; set; }
+        public string City { get; set; } 
         [MaxLength(2)]
         public string State { get; set; }
         public int ZipCode { get; set; }

@@ -9,6 +9,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using TrashCollector.Models;
+using TrashCollector.Models.TrashCollection;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace TrashCollector.Controllers
 {
@@ -17,6 +19,7 @@ namespace TrashCollector.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         public AccountController()
         {
@@ -153,16 +156,23 @@ namespace TrashCollector.Controllers
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
+                var customer = new Customer { FirstName = model.FirstName, LastName = model.LastName, PhoneNumber = model.PhoneNumber, EmailAddress = model.Email };
+                var address = new Address { Street = model.Street, City = model.City, State = model.State, ZipCode = model.ZipCode };
+                var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-
+                    customer.UserId = user.Id;
+                    db.Customers.Add(customer);
+                    db.Addresses.Add(address);
+                    userManager.AddToRole(userManager.FindByEmail(user.Email).Id, "User");
+                    db.SaveChanges();
                     return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);
