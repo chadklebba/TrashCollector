@@ -56,6 +56,7 @@ namespace TrashCollector.Controllers
 
                 //string userId = User.Identity.GetUserId();
                 //ApplicationUser user = db.Users.Where(u => u.Id == userId).First();
+                //db.Roles
 
                 db.Customers.Add(customer);
                 db.SaveChanges();

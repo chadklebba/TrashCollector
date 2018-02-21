@@ -171,7 +171,11 @@ namespace TrashCollector.Controllers
                     customer.UserId = user.Id;
                     db.Customers.Add(customer);
                     db.Addresses.Add(address);
+
                     userManager.AddToRole(userManager.FindByEmail(user.Email).Id, "User");
+
+                    var test = userManager.GetRoles(user.Id);
+
                     db.SaveChanges();
                     return RedirectToAction("Index", "Home");
                 }
