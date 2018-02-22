@@ -56,7 +56,7 @@ namespace TrashCollector.Controllers
 
                 //string userId = User.Identity.GetUserId();
                 //ApplicationUser user = db.Users.Where(u => u.Id == userId).First();
-                //db.Roles
+                //db.Roles.
 
                 db.Customers.Add(customer);
                 db.SaveChanges();
@@ -130,6 +130,29 @@ namespace TrashCollector.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public ActionResult UserAccount()
+        {
+            string userid = User.Identity.GetUserId();
+            Customer customer = (from x in db.Customers where x.UserId == userid select x).FirstOrDefault();
+            if(customer == null)
+            {
+                return View();
+            }
+            return View(customer);
+        }
+
+        [HttpPost]
+        public ActionResult UserAccount([Bind(Include = "CustomerId,FirstName,LastName,PhoneNumber,EmailAddress, UserId, PickupDate, VacationStartDate, VacationEndDate")] Customer customer)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(customer).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index","Home");
+            }
+            return View(customer);
         }
     }
 }

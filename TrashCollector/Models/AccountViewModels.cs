@@ -94,6 +94,10 @@ namespace TrashCollector.Models
         public int ZipCode { get; set; }
 
         [Required]
+        [Display(Name = "Garbage Pickup Date")]
+        public string PickupDate { get; set; }
+
+        [Required]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
@@ -109,7 +113,7 @@ namespace TrashCollector.Models
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
     }
-
+ 
     public class ResetPasswordViewModel
     {
         [Required]

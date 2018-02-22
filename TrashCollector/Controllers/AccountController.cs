@@ -156,7 +156,7 @@ namespace TrashCollector.Controllers
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
-                var customer = new Customer { FirstName = model.FirstName, LastName = model.LastName, PhoneNumber = model.PhoneNumber, EmailAddress = model.Email };
+                var customer = new Customer { FirstName = model.FirstName, LastName = model.LastName, PhoneNumber = model.PhoneNumber, EmailAddress = model.Email, PickupDate = model.PickupDate };
                 var address = new Address { Street = model.Street, City = model.City, State = model.State, ZipCode = model.ZipCode };
                 var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
                 if (result.Succeeded)
@@ -174,10 +174,11 @@ namespace TrashCollector.Controllers
 
                     userManager.AddToRole(userManager.FindByEmail(user.Email).Id, "User");
 
-                    var test = userManager.GetRoles(user.Id);
+                    //var test = userManager.GetRoles(user.Id);
 
                     db.SaveChanges();
-                    return RedirectToAction("Index", "Home");
+                    AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+                    return RedirectToAction("Login", "Account");
                 }
                 AddErrors(result);
             }
