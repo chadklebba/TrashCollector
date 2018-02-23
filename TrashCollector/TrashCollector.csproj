@@ -204,33 +204,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201802202009079_InitialCreate.cs" />
-    <Compile Include="Migrations\201802202009079_InitialCreate.Designer.cs">
-      <DependentUpon>201802202009079_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201802211706190_addcolumns.cs" />
-    <Compile Include="Migrations\201802211706190_addcolumns.Designer.cs">
-      <DependentUpon>201802211706190_addcolumns.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201802211744311_addcolumns1.cs" />
-    <Compile Include="Migrations\201802211744311_addcolumns1.Designer.cs">
-      <DependentUpon>201802211744311_addcolumns1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201802211916291_adduserId.cs" />
-    <Compile Include="Migrations\201802211916291_adduserId.Designer.cs">
-      <DependentUpon>201802211916291_adduserId.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201802221408521_datedropdown.cs" />
-    <Compile Include="Migrations\201802221408521_datedropdown.Designer.cs">
-      <DependentUpon>201802221408521_datedropdown.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201802221944387_addingdate.cs" />
-    <Compile Include="Migrations\201802221944387_addingdate.Designer.cs">
-      <DependentUpon>201802221944387_addingdate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201802222140340_AddVacation.cs" />
-    <Compile Include="Migrations\201802222140340_AddVacation.Designer.cs">
-      <DependentUpon>201802222140340_AddVacation.cs</DependentUpon>
+    <Compile Include="Migrations\201802231701530_InitialCreate.cs" />
+    <Compile Include="Migrations\201802231701530_InitialCreate.Designer.cs">
+      <DependentUpon>201802231701530_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -332,26 +308,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201802202009079_InitialCreate.resx">
-      <DependentUpon>201802202009079_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201802211706190_addcolumns.resx">
-      <DependentUpon>201802211706190_addcolumns.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201802211744311_addcolumns1.resx">
-      <DependentUpon>201802211744311_addcolumns1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201802211916291_adduserId.resx">
-      <DependentUpon>201802211916291_adduserId.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201802221408521_datedropdown.resx">
-      <DependentUpon>201802221408521_datedropdown.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201802221944387_addingdate.resx">
-      <DependentUpon>201802221944387_addingdate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201802222140340_AddVacation.resx">
-      <DependentUpon>201802222140340_AddVacation.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201802231701530_InitialCreate.resx">
+      <DependentUpon>201802231701530_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

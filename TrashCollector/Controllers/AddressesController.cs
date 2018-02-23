@@ -133,8 +133,30 @@ namespace TrashCollector.Controllers
         public ActionResult DailyTrash(Address address)
         {
             int zip = address.ZipCode;
-            var addresses = (from x in db.Addresses where x.ZipCode == zip select x);
-            return View(addresses.ToList());
+            var day = DateTime.Now;
+            
+            string today = day.DayOfWeek.ToString();
+            var addresses = (from x in db.Addresses where x.ZipCode == zip select x).ToList();
+            var todaycustomers = (from c in db.Customers where c.PickupDate == today select c).ToList();
+
+            List<Address> todaysAddresses = new List<Address>();
+
+            for(int i = 0; i < addresses.Count; i++)
+            {
+                for(int j = 0; j < todaycustomers.Count; j++)
+                {
+                    if(addresses[i].CustomerId == todaycustomers[j].CustomerId)
+                    {
+                        todaysAddresses.Add(addresses[i]);
+                        break;
+                    }
+                }
+            }
+
+            
+
+
+            return View(todaysAddresses);
            
         }
         public ActionResult ZipChoice()
@@ -146,7 +168,7 @@ namespace TrashCollector.Controllers
         [HttpPost, ActionName("ZipChoice")]
         public ActionResult ZipChoice([Bind(Include = "ZipCode")]Address address)
         {
-            int zip = address.ZipCode;
+            
             return RedirectToAction("DailyTrash", address);
             
         }
