@@ -317,6 +317,8 @@
     <Content Include="Views\Addresses\Edit.cshtml" />
     <Content Include="Views\Addresses\Index.cshtml" />
     <Content Include="Views\Customers\UserAccount.cshtml" />
+    <Content Include="Views\Addresses\DailyTrash.cshtml" />
+    <Content Include="Views\Addresses\ZipChoice.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Images\" />

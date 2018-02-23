@@ -130,5 +130,27 @@ namespace TrashCollector.Controllers
             }
             base.Dispose(disposing);
         }
+        public ActionResult DailyTrash(Address address)
+        {
+            int zip = address.ZipCode;
+            var addresses = (from x in db.Addresses where x.ZipCode == zip select x);
+            return View(addresses.ToList());
+           
+        }
+        public ActionResult ZipChoice()
+        {
+
+            return View();
+
+        }
+        [HttpPost, ActionName("ZipChoice")]
+        public ActionResult ZipChoice([Bind(Include = "ZipCode")]Address address)
+        {
+            int zip = address.ZipCode;
+            return RedirectToAction("DailyTrash", address);
+            
+        }
     }
-}
+        
+    }
+
