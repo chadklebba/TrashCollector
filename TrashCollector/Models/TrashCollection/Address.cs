@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Script.Serialization;
 
 namespace TrashCollector.Models.TrashCollection
 {
@@ -15,8 +16,9 @@ namespace TrashCollector.Models.TrashCollection
         [MaxLength(2)]
         public string State { get; set; }
         public int ZipCode { get; set; }
-
+        [ScriptIgnore]
         public int CustomerId { get; set; }
+        [ScriptIgnore]
         public Customer Customer { get; set; }
 
     }

@@ -69,20 +69,54 @@
     <h3>Map for Daily Routes</h3>
 </center>
 <div id="map"></div>
-<script>
-               function initMap() {
 
-                   var uluru = { lat: -25.363, lng: 131.044 };
-                   var map = new google.maps.Map(document.getElementById('map'), {
-                       zoom: 4,
-                       center: uluru
-                   });
-                   var marker = new google.maps.Marker({
-                       position: uluru,
-                       map: map
-                   });
-               }
+@section Scripts {
+ <script 
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD0h7OvlFvbbVkRpma551VW8O--QReBpRE">
+</script> 
+    <script>
+    var addresses = @Html.Raw(Json.Encode(Model));
+    var stringAddresses = [];
+    for (var i = 0; i < addresses.length; i++)
+    {
+        var address = "";
+        address += addresses[i].Street;
+        address += " ";
+        address += addresses[i].City;
+        address += " ";
+        address += addresses[i].State;
+        address += " ";
+        address += addresses[i].ZipCode;
+        stringAddresses.push(address);
+
+    }
+
+    $(document).ready(function () {
+        var map;
+        var elevator;
+        var myOptions = {
+            zoom: 13,
+            center: new google.maps.LatLng(43.1339, -88.2220),
+            mapTypeId: 'terrain'
+        };
+        map = new google.maps.Map($('#map')[0], myOptions);
+
+
+
+        for (var x = 0; x < stringAddresses.length; x++) {
+            $.getJSON('http://maps.googleapis.com/maps/api/geocode/json?address=' + stringAddresses[x] + '&sensor=false', null, function (data) {
+                var p = data.results[0].geometry.location;
+                var latlng = new google.maps.LatLng(p.lat, p.lng);
+                new google.maps.Marker({
+                    position: latlng,
+                    
+                    map: map
+                });
+                map.center=latlng;
+            });
+        }
+
+    });
 </script>
-<script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap">
-</script>
+ 
+}
